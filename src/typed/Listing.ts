@@ -11,3 +11,18 @@ export type UserType = {
     isAdmin: boolean;
 };
 
+export type MuseumType = {
+    name: string;
+    imageUrl: string;
+    latitude: number;
+    longitude: number;
+}
+
+export type firebaseApp = {
+    firestore: any;
+}
+
+
+
+
+
