@@ -2,8 +2,10 @@ import firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/firestore';
 import { FormEvent, useEffect, useState } from "react";
-import ChatBox from '../../src/components/Chatbox';
+// Import the functions you need from the SDKs you need
+// import ChatBox from '../../src/components/Chatbox';
 import { Button, Title } from "../../src/styled"
+
 
 //import { firebaseApp } from "../../src/typed";
 
@@ -13,13 +15,16 @@ import { Button, Title } from "../../src/styled"
 
 // Your web app's Firebase configuration
 const firebaseApp = firebase.initializeApp({
-    apiKey: "AIzaSyDe4mZ-ly9p8y70UZ4UxqU7IcHpyi8_Wa4",
-    authDomain: "portfolio-chat-dcfae.firebaseapp.com",
-    projectId: "portfolio-chat-dcfae",
-    storageBucket: "portfolio-chat-dcfae.appspot.com",
-    messagingSenderId: "971570349606",
-    appId: "1:971570349606:web:12654844828e4d3827c8e7"
+    apiKey: "AIzaSyDDDRcmACvq-0h0CynPiUCExWRtjgl-9Ag",
+    authDomain: "chatbox-ba14c.firebaseapp.com",
+    projectId: "chatbox-ba14c",
+    storageBucket: "chatbox-ba14c.appspot.com",
+    messagingSenderId: "1874358412",
+    appId: "1:1874358412:web:a77584d6d3043291528ba9",
+    measurementId: "G-QB68B80NJ1"
 });
+
+
 
 
 const db = firebaseApp.firestore();
@@ -63,10 +68,15 @@ export const Chat = () => {
 
     return (
         <div style={{ margin: "auto" }}>
-            <Title>Real time chat with Firebase</Title>
+            <Title>Chat over any cycling topic</Title>
             <div style={{ display: "flex", flexDirection: "column-reverse" }}>
-                {messages && messages.map(message =>
-                    <ChatBox text={message.text} createdAt={message.createdAt} />
+                {messages.length > 0 && messages.map(message => {
+                    return (
+                        <div>
+                            <p>{message.text}</p>
+                        </div>
+                    )
+                }
                 )}
             </div>
 
@@ -78,7 +88,7 @@ export const Chat = () => {
                 />
                 <Button type="submit" disabled={!newMessage || newMessage.length > 20}>Send</Button>
             </form>
-        </div>
+        </div >
     )
 }
 
