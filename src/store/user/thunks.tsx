@@ -7,24 +7,28 @@ import { UserType } from "../../typed";
 //import { selectToken } from "./selectors";
 import { appLoading, appDoneLoading } from "../appState/slice";
 //import { showMessageWithTimeout } from "../appState/thunks";
-import { loginSuccess, logOut, tokenStillValid } from "./slice";
+import { loginSuccess, logOut, tokenStillValid, persistToken } from "./slice";
 
 
 export const signUp = (name: string, email: string, password: string) => {
   return async (dispatch: AppDispatch, getState: () => RootState) => {
+    console.log("im here")
     dispatch(appLoading());
-    // try {
-    const response = await axios.post(`${apiUrl}/auth/signup`, {
-      name,
-      email,
-      password,
-    });
 
-    dispatch(
-      loginSuccess({ token: response.data.token, userProfile: response.data.user, currentUser: response.data.user })
-    );
-    //  dispatch(showMessageWithTimeout("success", true, "account created"));
-    dispatch(appDoneLoading());
+    try {
+      const response = await axios.post(`${apiUrl}/auth/signup`, {
+        name,
+        email,
+        password,
+      }); console.log("userr", name, email, password)
+
+
+      dispatch(
+        loginSuccess({ token: response.data.token, userProfile: response.data.user })
+      );
+      //  dispatch(showMessageWithTimeout("success", true, "account created"));
+      dispatch(appDoneLoading());
+    } catch (error: any) { console.log(error) }
     /*  } catch (error: any) {
         if (error.response) {
           console.log(error.response.data.message);
@@ -59,7 +63,7 @@ export const login = (email: string, password: string) => {
     });
     console.log("token data", response.data.user)
     dispatch(
-      loginSuccess({ token: response.data.token, userProfile: response.data.user, currentUser: response.data.user })
+      loginSuccess({ token: response.data.token, userProfile: response.data.user })
     );
 
   };
@@ -70,6 +74,10 @@ export const getUserWithStoredToken = () => {
     // get token from the state
     const token = localStorage.getItem("token")//selectToken(getState());
     console.log("token", token)
+    if (token) {
+      dispatch(persistToken(token))
+    }
+
 
     // if we have no token, stop
     // if (token === null) return;
@@ -97,6 +105,7 @@ export const getUserWithStoredToken = () => {
       // if we get a 4xx or 5xx response,
       // get rid of the token by logging out
       dispatch(logOut());
+
       dispatch(appDoneLoading());
     }
   };
@@ -108,18 +117,19 @@ export const getUserWithStoredToken = () => {
 export const fetchUsers = () => async (dispatch: AppDispatch, getState: () => RootState) => {
   const response = await axios.get<UserType[]>(`${apiUrl}/users`);
   // console.log("response users", response.data);
-  dispatch(usersFetched(response.data));
+  // dispatch(usersFetched(response.data));
 
 };
 
 export const updateUser = (email: string, phone: string, instagram_blog: string) => async (dispatch: AppDispatch, getState: () => RootState) => {
-  const response = await axios.patch(`${apiUrl}/updateUser`);
+  const response = await axios.patch(`${apiUrl}/updateUser`, {
+    email, phone, instagram_blog,
+  },
+    { headers: { Authorization: `Bearer ${getState().user.token}` } }
+  );
+
+  dispatch(getUserWithStoredToken())
   console.log("response", response.data);
-  /* {
-       email: email,
-           phone: phone,
-               instagram_blog: instagram_blog,
-                   userId: getState().user.profile.id,
-     },*/
+
 
 };

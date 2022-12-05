@@ -20,7 +20,7 @@ export const Login = () => {
     useEffect(() => {
         //  if (token !== null) {
         if (token) {
-            navigate("/users");
+            navigate("/user");
         }
     }, [token, navigate]);
 

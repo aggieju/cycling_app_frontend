@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { useMemo } from "react";
 
-const ChatBox = (message: { id: number, text: string; createdAt: string; }) => {
+const ChatBox = (message: { text: string; createdAt: string; }) => {
 
 
   const colors = ["264653", "2a9d8f", "e9c46a", "f4a261", "e76f51", "D43D8A"]

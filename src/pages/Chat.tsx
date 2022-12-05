@@ -64,7 +64,11 @@ export const Chat = () => {
     return (
         <div style={{ margin: "auto" }}>
             <Title>Real time chat with Firebase</Title>
-
+            <div style={{ display: "flex", flexDirection: "column-reverse" }}>
+                {messages && messages.map(message =>
+                    <ChatBox text={message.text} createdAt={message.createdAt} />
+                )}
+            </div>
 
             <form onSubmit={handleSubmit}>
                 <input

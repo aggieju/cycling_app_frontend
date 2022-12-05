@@ -18,7 +18,7 @@ function App() {
 
   useEffect(() => {
     dispatch(getUserWithStoredToken());
-  }, [dispatch]);
+  }, []);
 
   return (
     <div>
@@ -27,8 +27,8 @@ function App() {
         <Route path="/" element={<Welcomepage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
-        <Route path="/users" element={<Homepage />} />
         <Route path="/map" element={<Map />} />
+        <Route path="/user" element={<Homepage />} />
         <Route path="/chat" element={<Chat />} />
       </Routes>
     </div>

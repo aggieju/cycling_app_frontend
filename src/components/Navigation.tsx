@@ -3,10 +3,11 @@ import { Link } from "react-router-dom"
 import { useAppDispatch, useAppSelector } from "../app/hooks"
 import { selectToken } from "../store/user/selectors"
 import { logOut } from "../store/user/slice";
+import { useNavigate } from "react-router-dom"
 
 export const Navigation = () => {
 
-
+  const navigate = useNavigate()
   const dispatch = useAppDispatch()
 
   const token = useAppSelector(selectToken)
@@ -48,8 +49,9 @@ export const Navigation = () => {
 
         }
         {token ?
-          <button onClick={() => dispatch(logOut())}>Logout</button>
-          : <MenuLink to="/login">Login/Signup</MenuLink>}
+          <button onClick={() => { dispatch(logOut()); navigate("/") }}>Logout</button>
+          : <MenuLink to="/login">Login/Signup</MenuLink>
+        }
 
       </Menu>
     </Nav>

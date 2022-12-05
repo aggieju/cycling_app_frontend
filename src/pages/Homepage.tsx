@@ -27,35 +27,31 @@ export const Homepage = () => {
 
     return (
         <div>
+
             <h2>My info</h2>
             {!userProfile
                 ? ("Loading"
                 ) : <div>
-                    {userProfile.map((user) => {
-                        return (
-                            <div key={user.id}
-                            >
-                                <p>Name: {user.name} </p>
-                                <p>Email: {user.email} </p>
-                                <p>Phone number: {user.phone} </p>
-                                <p>Date of birth: {new Date(user.date_of_birth).toDateString()} </p>
-                                <p>Instagram/blog: {user.instagram_blog} </p>
-
-                                <button onClick={() => setDisplayForm(!displayForm)}>Update email, phone and instagram/blog</button>
-                                {displayForm && <ChangeDetailsForm />}
-                            </div>
-
-                        );
-
-                    })}
 
 
+                    <p>Name: {userProfile.name} </p>
+                    <p>Email: {userProfile.email} </p>
+                    <p>Phone number: {userProfile.phone} </p>
+                    <p>Date of birth: {new Date(userProfile.date_of_birth).toDateString()} </p>
+                    <p>Instagram/blog: {userProfile.instagram_blog} </p>
+
+                    <button onClick={() => setDisplayForm(!displayForm)}>Update email, phone and instagram/blog</button>
+                    {displayForm && <ChangeDetailsForm />}
                 </div>
+
+
 
             }
 
+
         </div>
-    );
+
+    )
 
 }
 
