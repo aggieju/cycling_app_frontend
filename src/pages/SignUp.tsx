@@ -32,29 +32,31 @@ export const SignUp = () => {
 
     return (
         <div style={{ textAlign: "center" }}>
-            <Container>
-                <Title>Sign Up</Title>
-                <form onSubmit={submitForm}>
-                    <Input
-                        placeholder="name"
-                        value={name}
-                        onChange={(e) => setName(e.target.value)}
-                    />
-                    <Input
-                        placeholder="email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                    />
-                    <Input
-                        type="password"
-                        placeholder="password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                    />
+            <div className='card shadow'>
+                <Container>
+                    <Title>Sign Up</Title>
+                    <form onSubmit={submitForm}>
+                        <Input
+                            placeholder="name"
+                            value={name}
+                            onChange={(e) => setName(e.target.value)}
+                        />
+                        <Input
+                            placeholder="email"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                        />
+                        <Input
+                            type="password"
+                            placeholder="password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                        />
 
-                    <Button type="submit">Sign Up</Button>
-                </form>
-            </Container>
+                        <Button type="submit">Sign Up</Button>
+                    </form>
+                </Container>
+            </div>
         </div>
     )
 }

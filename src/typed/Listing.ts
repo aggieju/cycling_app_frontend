@@ -22,6 +22,11 @@ export type firebaseApp = {
     firestore: any;
 }
 
+export type ClassesType = {
+    position: string;
+    decimals: number;
+}
+
 
 
 

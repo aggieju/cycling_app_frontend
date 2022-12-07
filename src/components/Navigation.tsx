@@ -1,9 +1,9 @@
-import styled from "styled-components"
-import { Link } from "react-router-dom"
-import { useAppDispatch, useAppSelector } from "../app/hooks"
-import { selectToken } from "../store/user/selectors"
-import { logOut } from "../store/user/slice";
-import { useNavigate } from "react-router-dom"
+import { Link, useNavigate } from 'react-router-dom';
+import styled from 'styled-components';
+
+import { useAppDispatch, useAppSelector } from '../app/hooks';
+import { selectToken } from '../store/user/selectors';
+import { logOut } from '../store/user/slice';
 
 export const Navigation = () => {
 
@@ -25,7 +25,7 @@ export const Navigation = () => {
       </Hamburger>
       <Menu>
         {
-          <MenuLink to="/info">Info for beginners</MenuLink>
+          <MenuLink to="/">Welcome page</MenuLink>
 
         }
         {
@@ -37,17 +37,14 @@ export const Navigation = () => {
 
         }
         {
-          <MenuLink to="/events">Events</MenuLink>
+          <MenuLink to="/campings">Campings</MenuLink>
 
         }
         {
           <MenuLink to="/map">Map</MenuLink>
 
         }
-        {
-          <MenuLink to="/statistics">Statistics</MenuLink>
 
-        }
         {token ?
           <button onClick={() => { dispatch(logOut()); navigate("/") }}>Logout</button>
           : <MenuLink to="/login">Login/Signup</MenuLink>
@@ -55,6 +52,10 @@ export const Navigation = () => {
 
       </Menu>
     </Nav>
+
+
+
+
   )
 }
 
@@ -78,8 +79,7 @@ const Nav = styled.div`
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
-  background: #006400;
-  /* position: absolute; */
+  background: #355E3B;
   top: 0;
   left: 0;
   right: 0;
@@ -105,7 +105,7 @@ const Hamburger = styled.div`
   span {
     height: 2px;
     width: 25px;
-    background-color: #006400;
+    background-color: #4F7942
     margin-bottom: 4px;
     border-radius: 5px;
   }

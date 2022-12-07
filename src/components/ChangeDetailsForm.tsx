@@ -27,7 +27,7 @@ export const ChangeDetailsForm = () => {
                     Phone: <input value={phone} onChange={(event) => setPhone(event.target.value)} />
                 </p>
                 <p>
-                    Instagram_blog: <input value={instagram_blog} onChange={(event) => setInstagram_blog(event.target.value)} />
+                    Insta: <input value={instagram_blog} onChange={(event) => setInstagram_blog(event.target.value)} />
                 </p>
                 <button type="submit" >Submit</button>
             </form>

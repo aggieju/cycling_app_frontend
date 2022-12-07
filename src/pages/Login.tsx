@@ -1,11 +1,10 @@
+import { FormEvent, useEffect, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import styled from "styled-components"
-import { Button, Input, Title, LinkWord } from "../../src/styled"
-import { Link } from "react-router-dom"
-import { FormEvent, useEffect, useState } from "react"
-import { useAppDispatch, useAppSelector } from "../app/hooks"
-import { useNavigate } from "react-router-dom"
-import { login } from "../store/user/thunks"
-import { selectToken } from "../store/user/selectors"
+import { Button, Input, LinkWord, Title } from '../../src/styled';
+import { useAppDispatch, useAppSelector } from '../app/hooks';
+import { selectToken } from '../store/user/selectors';
+import { login } from '../store/user/thunks';
 
 export const Login = () => {
 
@@ -30,31 +29,41 @@ export const Login = () => {
     }
 
     return (
-        <div style={{ textAlign: "center" }}>
-            <Container>
-                <Title>Login</Title>
-                <form onSubmit={submitForm}>
-                    <Input
-                        placeholder="email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                    />
-                    <Input
-                        type="password"
-                        placeholder="password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                    />
-                    <br />
-                    <Button type="submit">Login</Button>
-                </form>
-                <SubText>
-                    Don't have an account yet? Click <Link to="/signup" style={LinkWord}>here</Link> to sign up
-                </SubText>
-            </Container>
+        <div style={{ textAlign: "center" }} className="container mt-5">
+            <div className='card shadow'>
+                <div className='card-body'>
+                    <Container>
+                        <Title>Login</Title>
+                        <form onSubmit={submitForm}>
+                            <div className='d-flex flex-column align-items-center'   >
+                                <Input
+                                    className='form-control mb-4'
+                                    placeholder="email"
+                                    value={email}
+                                    onChange={(e) => setEmail(e.target.value)}
+                                />
+                                <Input
+                                    className='form-control mb-4'
+                                    type="password"
+                                    placeholder="password"
+                                    value={password}
+                                    onChange={(e) => setPassword(e.target.value)}
+                                />
+                                <Button className="btn btn-primary" type="submit">Login</Button>
+                            </div>
+                        </form>
+                        <p className='text-center mt-3'>
+                            Don't have an account yet? Click <Link to="/signup" style={LinkWord}>here</Link> to sign up
+                        </p>
+                    </Container>
+                </div>
+            </div>
+
+
         </div>
     )
 }
+
 
 const Container = styled.div`
   display: 'flex';
@@ -62,9 +71,5 @@ const Container = styled.div`
   margin: 15%;
 `
 
-const SubText = styled.p`
-  text-align: center;
-  color: #1E3163;
-  padding: 20px 0px 5px 0px;
-`;
+
 

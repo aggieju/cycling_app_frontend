@@ -1,11 +1,22 @@
-import { MapContainer, TileLayer, Marker, Popup, } from 'react-leaflet';
+import L, { divIcon, icon, Icon, LatLngTuple } from 'leaflet';
+import { MapContainer, TileLayer, Marker, Popup, MarkerProps, useMapEvents, } from 'react-leaflet';
 //import { amsterdamMuseums } from '../../src/data/data'
 import { MuseumType } from "../../src/typed";
 //npm i --save-dev @types/leaflet
 
 
-//Step 1. https://leafletjs.com/examples/quick-start/
-//Step 2. https://react-leaflet.js.org/docs/start-setup/
+function MyComponent() {
+    const map = useMapEvents({
+        click: (e) => {
+            const { lat, lng } = e.latlng;
+            L.marker([lat, lng]).addTo(map);
+            console.log(e.latlng.lat, e.latlng.lng);
+        }
+    });
+    return null;
+}
+
+
 export const amsterdamMuseums = [
     {
         name: "Nemo",
@@ -47,17 +58,15 @@ export const Map = () => {
         amsterdamMuseums: MuseumType[];
     }
 
-
-
     return (
 
-        <div className="container" style={{ width: "500", height: "600" }}>
+        <div className="container" style={{ width: "500", height: "700" }}>
             <div
                 className="card"
                 style={{
                     display: "flex",
                     alignItems: "center",
-                    marginTop: "5%",
+                    marginTop: "0%",
                     backgroundColor: "ghostwhite",
                 }}
             ></div>
@@ -65,6 +74,12 @@ export const Map = () => {
                 <TileLayer
                     attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+
+                />
+                <TileLayer
+                    attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                    url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"
+
                 />
                 <Marker position={[-43.83841, -72.36991]}>
                     <Popup>
@@ -74,14 +89,24 @@ export const Map = () => {
                 {amsterdamMuseums.map(museum => (
                     // the marker is every pointer you see on the map
                     <Marker key={museum.name} position={[museum.latitude, museum.longitude]}>
+
+
                         {/* when we click on the marker, we see the popup */}
                         <Popup>
                             <img alt={museum.name} style={{ width: "100px", borderRadius: "0.5em" }} src={museum.imageUrl} />
                             <p>{museum.name}</p>
                         </Popup>
+
+
                     </Marker>
+
                 ))}
+                <MyComponent />
             </MapContainer>
         </div>
     )
 }
+
+
+
+
