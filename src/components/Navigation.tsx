@@ -33,7 +33,7 @@ export const Navigation = () => {
 
         }
         {
-          <MenuLink to="/forum">Forum</MenuLink>
+          <MenuLink to="/forum">Chat</MenuLink>
 
         }
         {
@@ -46,7 +46,7 @@ export const Navigation = () => {
         }
 
         {token ?
-          <button onClick={() => { dispatch(logOut()); navigate("/") }}>Logout</button>
+          <button className="btn btn-success" onClick={() => { dispatch(logOut()); navigate("/video") }}>Logout</button>
           : <MenuLink to="/login">Login/Signup</MenuLink>
         }
 

@@ -30,7 +30,7 @@ export const Chat = () => {
     const [messages, setMessages] = useState<{ id: number; text: string; createdAt: string }[]>([]);
     const [newMessage, setNewMessage] = useState<string>('');
 
-    const query = db.collection('messages').orderBy('createdAt', 'desc').limit(5);
+    const query = db.collection('messages').orderBy('createdAt', 'desc').limit(8);
 
     const unsubscribe = () =>
         query.onSnapshot((querySnapshot: { docs: any[] }) => {
@@ -72,7 +72,9 @@ export const Chat = () => {
                             return (
                                 <div>
                                     <p>{message.text}</p>
+
                                 </div>
+
                             );
                         })}
                 </div>
@@ -86,9 +88,9 @@ export const Chat = () => {
                     />
                     <Button
                         type="submit"
-                        className="btn btn-primary mt-2"
+                        className="btn btn-success mt-2"
                         disabled={!newMessage || newMessage.length > 50}>
-                        Send
+                        Post
                     </Button>
                 </form>
             </Container>

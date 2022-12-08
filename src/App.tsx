@@ -8,6 +8,7 @@ import { Login } from "../src/pages/Login"
 import { SignUp } from "../src/pages/SignUp"
 import { Map } from "../src/pages/Map"
 import { Chat } from "../src/pages/Chat"
+import { Video } from "../src/pages/Video"
 import { Infobeginners } from "../src/pages/Infobeginners"
 import { Cloudinary } from "../src/pages/Cloudinary"
 import { useAppDispatch } from "../src/app/hooks"
@@ -36,6 +37,7 @@ function App() {
         <Route path="/info" element={<Infobeginners />} />
         <Route path="/campings" element={<Campings />} />
         <Route path="/upload_photo" element={<Cloudinary />} />
+        <Route path="/video" element={<Video />} />
       </Routes>
     </div>
   );

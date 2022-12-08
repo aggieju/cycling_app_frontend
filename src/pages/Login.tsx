@@ -49,7 +49,7 @@ export const Login = () => {
                                     value={password}
                                     onChange={(e) => setPassword(e.target.value)}
                                 />
-                                <Button className="btn btn-primary" type="submit">Login</Button>
+                                <Button className="btn btn-success" type="submit">Login</Button>
                             </div>
                         </form>
                         <p className='text-center mt-3'>

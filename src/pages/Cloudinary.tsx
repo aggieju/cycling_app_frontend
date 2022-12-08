@@ -16,13 +16,14 @@ export const Cloudinary = () => {
         const data = new FormData()
         data.append("file", files[0])
         //first parameter is always upload_preset, second is the name of the preset
-        data.append('upload_preset', "lpsty2kc")
+        data.append('upload_preset', "bjcenfdg")
 
         //post request to Cloudinary, remember to change to your own link
-        const res = await fetch("https://api.cloudinary.com/v1_1/delvoxvyc/image/upload", {
+        const res = await fetch("https://api.cloudinary.com/v1_1/dyt7qyt0y/image/upload", {
             method: "POST",
             body: data
         })
+
 
 
         const file = await res.json()
@@ -33,10 +34,6 @@ export const Cloudinary = () => {
     return (
         <div style={{ textAlign: "center" }}>
             <Title>Hey, how cool is it if you user can upload an image directly?</Title>
-            <a rel="noreferrer" target="_blank" href="https://github.com/karlaevelize/leaflet-cloudinary/blob/master/src/pages/Cloudinary.js">
-                <Button>Go to source code ➚</Button>
-            </a>
-            <br />
             <input type="file" onChange={uploadImage} />
             <div>
                 <img src={image ? image : "https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/1665px-No-Image-Placeholder.svg.png"} />

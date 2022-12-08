@@ -168,10 +168,10 @@ export const postCamping =
             currency: currency,
             latitude: latitude,
             longitude: latitude,
-            country: country,
+            country: country,*/
             photo1: photo1,
-            photo2: photo2,
-            photo3: photo3,*/
+            /*  photo2: photo2,
+              photo3: photo3,*/
             userId: userId,
 
           },

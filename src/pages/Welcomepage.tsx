@@ -2,8 +2,11 @@ import { Button, Input, Title } from "../styled"
 import styled from "styled-components"
 import '../styling-project/index.scss'
 /* eslint-disable jsx-a11y/img-redundant-alt */
+import ReactPlayer from 'react-player'
+//import video from '../../public/Videos/IMG_7700.MOV'
 
 export const Welcomepage = () => {
+
     return (
 
         <div className="container">
@@ -28,6 +31,8 @@ export const Welcomepage = () => {
                 <div className="centered_image">
                     <img className="aggie_img" alt="landing picture" src="./assets/homepage-landing.jpg" />
                 </div>
+
+
             </div>
         </div>
 

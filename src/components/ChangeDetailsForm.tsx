@@ -20,6 +20,7 @@ export const ChangeDetailsForm = () => {
     return (
         <div>
             <form onSubmit={handleSubmit}>
+                <br></br>
                 <p>
                     Email: <input value={email} onChange={(event) => setEmail(event.target.value)} />
                 </p>
@@ -29,7 +30,7 @@ export const ChangeDetailsForm = () => {
                 <p>
                     Insta: <input value={instagram_blog} onChange={(event) => setInstagram_blog(event.target.value)} />
                 </p>
-                <button type="submit" >Submit</button>
+                <button className="btn btn-secondary" type="submit" >Submit</button>
             </form>
         </div>
     )
