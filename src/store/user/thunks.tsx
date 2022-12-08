@@ -1,9 +1,8 @@
 import { apiUrl } from "../../config/constants";
 import axios from "axios";
 import { RootState, AppDispatch } from "../../app/store"
-import { usersFetched } from "../user/slice"
+import { usersFetched, campingPostSuccess } from "../user/slice"
 import { UserType } from "../../typed";
-
 //import { selectToken } from "./selectors";
 import { appLoading, appDoneLoading } from "../appState/slice";
 //import { showMessageWithTimeout } from "../appState/thunks";
@@ -12,7 +11,7 @@ import { loginSuccess, logOut, tokenStillValid, persistToken } from "./slice";
 
 export const signUp = (name: string, email: string, password: string) => {
   return async (dispatch: AppDispatch, getState: () => RootState) => {
-    console.log("im here")
+    // console.log("im here")
     dispatch(appLoading());
 
     try {
@@ -24,7 +23,7 @@ export const signUp = (name: string, email: string, password: string) => {
 
 
       dispatch(
-        loginSuccess({ token: response.data.token, userProfile: response.data.user })
+        loginSuccess({ token: response.data.token, userProfile: response.data.user, camping: response.data.camping })
       );
       //  dispatch(showMessageWithTimeout("success", true, "account created"));
       dispatch(appDoneLoading());
@@ -61,9 +60,9 @@ export const login = (email: string, password: string) => {
       email,
       password,
     });
-    console.log("token data", response.data.user)
+    console.log("login data", response.data)
     dispatch(
-      loginSuccess({ token: response.data.token, userProfile: response.data.user })
+      loginSuccess({ token: response.data.token, userProfile: response.data.user, camping: response.data.camping })
     );
 
   };
@@ -133,3 +132,56 @@ export const updateUser = (email: string, phone: string, instagram_blog: string)
 
 
 };
+
+export const postCamping =
+  (name: string,
+    description: string,
+    wild_camping: boolean,
+    pricePerNightPp: number,
+    currency: string,
+    latitude: number,
+    longitude: number,
+    country: string,
+    photo1: string,
+    photo2: string,
+    photo3: string,
+  ) =>
+    async (dispatch: AppDispatch, getState: () => RootState) => {
+      try {
+        console.log("getsTATE", getState());
+        const userId = getState().user.userProfile?.id;
+        if (!userId) {
+          return;
+        }
+        const response = await axios.post(`${apiUrl}/postCamping`,
+
+          {
+            name: name,
+            description: description,
+            latitude: latitude,
+            longitude: latitude,
+            country: country,
+            /*name: name,
+            description: description,
+            wild_camping: wild_camping,
+            pricePerNightPp: pricePerNightPp,
+            currency: currency,
+            latitude: latitude,
+            longitude: latitude,
+            country: country,
+            photo1: photo1,
+            photo2: photo2,
+            photo3: photo3,*/
+            userId: userId,
+
+          },
+          { headers: { Authorization: `Bearer ${getState().user.token}` } }
+        );
+
+        console.log("response hereeee", response.data);
+        dispatch(campingPostSuccess(response.data));
+        //  dispatch(showMessageWithTimeout("success", false, "Camping added!", 1500));
+      } catch (e) {
+        console.log("error,e");
+      }
+    };

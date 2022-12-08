@@ -11,6 +11,20 @@ export type UserType = {
     isAdmin: boolean;
 };
 
+export type CampingType = {
+    name: string;
+    description: string;
+    wild_camping: boolean;
+    pricePerNightPp: number;
+    currency: string;
+    latitude: number;
+    longitude: number;
+    country: string;
+    photo1: string;
+    photo2: string;
+    photo3: string;
+};
+
 export type MuseumType = {
     name: string;
     imageUrl: string;

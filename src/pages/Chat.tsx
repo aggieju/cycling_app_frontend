@@ -87,7 +87,7 @@ export const Chat = () => {
                     <Button
                         type="submit"
                         className="btn btn-primary mt-2"
-                        disabled={!newMessage || newMessage.length > 30}>
+                        disabled={!newMessage || newMessage.length > 50}>
                         Send
                     </Button>
                 </form>

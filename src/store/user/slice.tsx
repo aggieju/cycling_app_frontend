@@ -1,17 +1,19 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { UserType } from "../../typed";
+import { UserType, CampingType } from "../../typed";
 
 
 interface UserState {
     token: string; //| null;
-    userProfile: UserType | null
+    userProfile: UserType | null;
+    camping: CampingType | null
     //  userProfile: UserType[];
     //  currentUser: UserType | null
 }
 const initialState: UserState = {
     // token: null,
     token: "",
-    userProfile: null
+    userProfile: null,
+    camping: null,
     // userProfile: [],
     // currentUser: null
 };
@@ -31,13 +33,12 @@ export const usersSlice = createSlice({
             localStorage.setItem("token", action.payload.token);
             state.token = action.payload.token;
             state.userProfile = action.payload.userProfile;
+            state.camping = action.payload.camping;
         },
         logOut: (state, action: PayloadAction<undefined>) => {
             localStorage.removeItem("token");
             state.token = "";
             //  state.userProfile = [];
-
-
 
         },
 
@@ -47,23 +48,26 @@ export const usersSlice = createSlice({
 
         },
 
-
-
-
         tokenStillValid: (state, action: PayloadAction<UserType>) => {
             console.log("lala", action.payload)
             state.userProfile = action.payload;
+            //  state.camping = action.payload.camping;
             //    const token = localStorage.getItem("token")
             //    if (token) {
             //        state.token = token;
             //    }
         },
 
+        campingPostSuccess: (state, action: PayloadAction<CampingType>) => {
+            console.log("action camping post", action)
+            //     state.camping.stories.push(action.payload);
+        },
+
 
     }
 });
 
-export const { usersFetched, loginSuccess, logOut, tokenStillValid, persistToken } = usersSlice.actions;
+export const { usersFetched, loginSuccess, logOut, tokenStillValid, persistToken, campingPostSuccess } = usersSlice.actions;
 
 export default usersSlice.reducer;
 

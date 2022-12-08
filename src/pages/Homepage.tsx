@@ -1,10 +1,11 @@
 import { useEffect } from "react";
-import { fetchUsers, updateUser } from "../store/user/thunks"
+import { fetchUsers } from "../store/user/thunks"
 import { useAppDispatch, useAppSelector } from "../app/hooks"
 import { selectUsers } from "../store/user/selectors"
 import { UserType } from "../../src/typed";
 import { useState } from "react";
 import { ChangeDetailsForm } from "../../src/components/ChangeDetailsForm"
+import { AddCampingForm } from "../../src/components/AddCampingForm"
 //import { Listing } from "../../src/typed";
 import styled from "styled-components"
 import { Button, Input, LinkWord, Title } from '../../src/styled';
@@ -17,6 +18,7 @@ export const Homepage = () => {
     //const [name, setName] = useState("");
 
     const [displayForm, setDisplayForm] = useState<Boolean | undefined>(false);
+    const [displayForm2, setDisplayForm2] = useState<Boolean | undefined>(false);
 
     const userProfile = useAppSelector(selectUsers);
 
@@ -41,8 +43,11 @@ export const Homepage = () => {
                         <p>Date of birth: {new Date(userProfile.date_of_birth).toDateString()} </p>
                         <p>Instagram/blog: {userProfile.instagram_blog} </p>
 
-                        <button onClick={() => setDisplayForm(!displayForm)}>Update email, phone and instagram/blog</button>
-                        {displayForm && <ChangeDetailsForm />}
+                        <p><button onClick={() => setDisplayForm(!displayForm)}>Update email, phone and instagram/blog</button>
+                            {displayForm && <ChangeDetailsForm />}</p>
+
+                        <p><button onClick={() => setDisplayForm2(!displayForm2)}>Add camping</button>
+                            {displayForm2 && <AddCampingForm />}</p>
 
                     </div>
 

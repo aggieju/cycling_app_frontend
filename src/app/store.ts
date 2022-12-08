@@ -2,6 +2,7 @@ import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
 import counterReducer from '../features/counter/counterSlice';
 import { useDispatch } from 'react-redux'
 import userReducer from "../store/user/slice"
+import campingReducer from "../store/camping/slice"
 import appStateReducer from "../store/appState/slice"
 
 export const store = configureStore({
@@ -9,6 +10,7 @@ export const store = configureStore({
     counter: counterReducer,
     user: userReducer,
     appState: appStateReducer,
+    camping: campingReducer
   },
 });
 

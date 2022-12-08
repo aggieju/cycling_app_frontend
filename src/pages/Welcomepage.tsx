@@ -1,10 +1,12 @@
 import { Button, Input, Title } from "../styled"
-
+import styled from "styled-components"
+import '../styling-project/index.scss'
 /* eslint-disable jsx-a11y/img-redundant-alt */
+
 export const Welcomepage = () => {
     return (
 
-        <div className="container ">
+        <div className="container">
             <div className="mt-5">
                 <div className="mt-5" style={{ textAlign: "center" }}>
                     <div className="d-flex flex-column">
@@ -22,15 +24,17 @@ export const Welcomepage = () => {
                         </div>
                     </div>
                 </div >
-                <div className="img-fluid"></div>
-                <img
-                    alt="landing picture"
-                    src="./assets/homepage-landing.jpg"
-                    className="aggie-img--fixed-img"></img>
-            </div>
 
+                <div className="centered_image">
+                    <img className="aggie_img" alt="landing picture" src="./assets/homepage-landing.jpg" />
+                </div>
+            </div>
         </div>
+
+
     );
 };
 
 export default Welcomepage;
+
+
